@@ -47,13 +47,18 @@ const ganador = () => {
             text:"Felicitaciones",
             icon:"success"
         });
+
         clearInterval(interval);
+        
         puntos = 0;
         contadorTiempo = 25;
+        puntaje.innerHTML = `Su puntaje es: ${puntos}/30`;
+        tiempo.innerHTML = `Tiempo restante: ${contadorTiempo}s`;
     }
 }
 
 const funcionBotonEmpezar = () => {
+    
     botonComenzar.addEventListener("click", empezarPartida);
 }
 
@@ -61,7 +66,9 @@ const empezarPartida = () => {
     puntos = 0;
     contadorTiempo = 25;
     interval = setInterval(disminuirTiempo, 1000);
+    
     funcionalidadPlayer();
+        
 }
 
 const init = () => {
