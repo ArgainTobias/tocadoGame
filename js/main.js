@@ -9,7 +9,7 @@ const botonReiniciar = document.getElementById('reiniciar');
 
 const sumarPuntos = () => {
     puntos++;
-    puntaje.innerHTML = `Su puntaje es: ${puntos}/30`;
+    puntaje.textContent = `Su puntaje es: ${puntos}/30`;
     ganador();
     
     let randNum = Math.round(Math.random()*58);
@@ -26,18 +26,24 @@ const funcionalidadPlayer = () => {
 
 const disminuirTiempo = () => {
     contadorTiempo--;
-    tiempo.innerHTML = `Tiempo restante: ${contadorTiempo}s`;
+    tiempo.textContent = `Tiempo restante: ${contadorTiempo}s`;
 
     if(contadorTiempo === 0){
-        swal.fire({
-            title:"Perdiste",
-            text:"Vuelve a intentarlo!",
-            icon:"error"
-        })
-        clearInterval(interval);
-        contadorTiempo = 25;
-        puntos = 0;
+        perdedor();
     }
+}
+
+const perdedor = () => {
+    swal.fire({
+        title:"Perdiste",
+        text:"Vuelve a intentarlo!",
+        icon:"error"
+    })
+    clearInterval(interval);
+    contadorTiempo = 25;
+    puntos = 0;
+    puntaje.textContent = `Su puntaje es: ${puntos}/30`;
+    tiempo.textContent = `Tiempo restante: ${contadorTiempo}s`;
 }
 
 const ganador = () => {
@@ -52,8 +58,8 @@ const ganador = () => {
         
         puntos = 0;
         contadorTiempo = 25;
-        puntaje.innerHTML = `Su puntaje es: ${puntos}/30`;
-        tiempo.innerHTML = `Tiempo restante: ${contadorTiempo}s`;
+        puntaje.textContent = `Su puntaje es: ${puntos}/30`;
+        tiempo.textContent = `Tiempo restante: ${contadorTiempo}s`;
     }
 }
 
